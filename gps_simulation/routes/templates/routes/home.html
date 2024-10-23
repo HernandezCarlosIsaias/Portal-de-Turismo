@@ -1,0 +1,21 @@
+{% extends 'routes/base.html' %}
+{% load static %}
+
+{% block archivos_css %}
+<link rel= "stylesheet" href="{% static '../media/static/css/style.css'%}">
+{% endblock archivos_css %}
+
+
+{% block title %}Lista de Ciudades{% endblock %}
+
+{% block content %}
+    <h1>Ciudades</h1>
+    
+    <ul class="list-group">
+        {% for ciudad in ciudades %}
+            <li class="list-group-item"><a href="/city/{{ciudad.id}}">{{ ciudad.name }}</a> </li>
+        {% empty %}
+            <li class="list-group-item">No hay ciudades disponibles.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
