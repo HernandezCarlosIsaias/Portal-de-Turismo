@@ -11,6 +11,13 @@ class City(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def obtener_vecinos(self):
+        # Busca las rutas donde esta ciudad es la ciudad de inicio
+        rutas_salientes = Route.objects.filter(start_city=self)
+        # Genera una lista de tuplas (vecino, distancia)
+        vecinos = [(ruta.end_city, ruta.distance) for ruta in rutas_salientes]
+        return vecinos
 
 class Route(models.Model):
     start_city = models.ForeignKey(City, related_name='route_start', on_delete=models.CASCADE)

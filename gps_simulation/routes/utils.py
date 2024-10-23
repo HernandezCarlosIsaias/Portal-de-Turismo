@@ -1,30 +1,25 @@
 import heapq #libreria para implementar la cola de prioridad
 from .models import City, Route
 
-def dijkstra(start_city):
-    # Inicialización
-    distancias = {start_city: 0}  # Distancia desde la ciudad inicial
-    ciudades_previas = {start_city: None}  # Para rastrear el camino más corto
-    cola_prioridad = [(0, start_city)]  # Cola de prioridad con (distancia, ciudad)
+
+def dijkstra(ciudad_inicio):
+    distancias = {ciudad_inicio: 0}
+    ciudades_previas = {ciudad_inicio: None}
+    cola_prioridad = [(0, ciudad_inicio)]
 
     while cola_prioridad:
-        # Obtener la ciudad con la distancia mínima
         distancia_actual, ciudad_actual = heapq.heappop(cola_prioridad)
 
-        # Verificar si la ciudad ya tiene una distancia mejor
         if distancia_actual > distancias[ciudad_actual]:
             continue
 
-        # Iterar sobre las rutas vecinas
-        for ruta in ciudad_actual.routes:
-            vecina = ruta.destination
-            distancia = distancia_actual + ruta.distance  # Calcular nueva distancia
+        for vecino, peso in ciudad_actual.obtener_vecinos():
+            distancia = distancia_actual + peso
 
-            # Si encontramos una mejor distancia, la actualizamos
-            if vecina not in distancias or distancia < distancias[vecina]:
-                distancias[vecina] = distancia
-                ciudades_previas[vecina] = ciudad_actual
-                heapq.heappush(cola_prioridad, (distancia, vecina))  # Añadir a la cola de prioridad
+            if distancia < distancias.get(vecino, float('inf')):
+                distancias[vecino] = distancia
+                ciudades_previas[vecino] = ciudad_actual
+                heapq.heappush(cola_prioridad, (distancia, vecino))
 
     return distancias, ciudades_previas
 
