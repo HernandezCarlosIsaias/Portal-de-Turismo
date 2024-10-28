@@ -97,12 +97,12 @@ class ArbolBinarioBusqueda:
     def obtener_lista(self):
         return [self.obtener(clave) for clave in self.obtener_claves()]
 
-    def __getitem__(self,clave):
-        res = self.obtener(clave)
-        if res:
-            return res
+    def __getitem__(self,clave): #define el método __getitem__ que toma un argumento clave.
+        res = self.obtener(clave) #Llama al método obtener del objeto self con la clave proporcionada y almacena el resultado en res.
+        if res: #Comprueba si res no es None o no está vacío.
+            return res #Comprueba si res no es None o no está vacío.
         else:
-            raise KeyError('Error, la clave no está en el árbol')
+            raise KeyError('Error, la clave no está en el árbol') #Si res es None o está vacío, lanza una excepción KeyError con el mensaje "Error, la clave no está en el árbol".
 
     def __contains__(self,clave):
         if self._obtener(clave,self.raiz):
@@ -136,37 +136,37 @@ class ArbolBinarioBusqueda:
     def __delitem__(self,clave):
         self.eliminar(clave)
 
-    def remover(self,nodoActual):
-        if nodoActual.esHoja(): #hoja
-            if nodoActual == nodoActual.padre.hijoIzquierdo:
-                nodoActual.padre.hijoIzquierdo = None
-            else:
-                nodoActual.padre.hijoDerecho = None
-        elif nodoActual.tieneAmbosHijos(): #interior
-            suc = nodoActual.encontrarSucesor()
-            suc.empalmar()
-            nodoActual.clave = suc.clave
-            nodoActual.cargaUtil = suc.cargaUtil
+    def remover(self,nodoActual): #Define la función remover que toma como parámetros self y nodoActual.
+        if nodoActual.esHoja(): #Verifica si el nodoActual es una hoja
+            if nodoActual == nodoActual.padre.hijoIzquierdo: #Comprueba si nodoActual es el hijo izquierdo de su padre.
+                nodoActual.padre.hijoIzquierdo = None #Si es el hijo izquierdo, elimina la referencia del padre al nodoActual
+            else: #Si no es el hijo izquierdo, entonces es el hijo derecho.
+                nodoActual.padre.hijoDerecho = None #Elimina la referencia del padre al nodoActual si es el hijo derecho.
+        elif nodoActual.tieneAmbosHijos(): #Comprueba si el nodoActual tiene ambos hijos (izquierdo y derecho).
+            suc = nodoActual.encontrarSucesor() #Encuentra el sucesor del nodoActual.
+            suc.empalmar() #Reconecta los hijos del sucesor (suc) con el árbol.
+            nodoActual.clave = suc.clave #Reemplaza la clave del nodoActual con la clave del sucesor.
+            nodoActual.cargaUtil = suc.cargaUtil #Reemplaza la carga útil del nodoActual con la carga útil del sucesor.
 
         else: # este nodo tiene un (1) hijo
-            if nodoActual.tieneHijoIzquierdo():
-                if nodoActual.esHijoIzquierdo():
-                    nodoActual.hijoIzquierdo.padre = nodoActual.padre
-                    nodoActual.padre.hijoIzquierdo = nodoActual.hijoIzquierdo
-                elif nodoActual.esHijoDerecho():
-                    nodoActual.hijoIzquierdo.padre = nodoActual.padre
-                    nodoActual.padre.hijoDerecho = nodoActual.hijoIzquierdo
-                else:
-                    nodoActual.reemplazarDatoDeNodo(nodoActual.hijoIzquierdo.clave, nodoActual.hijoIzquierdo.cargaUtil, nodoActual.hijoIzquierdo.hijoIzquierdo, nodoActual.hijoIzquierdo.hijoDerecho)
-            else:
-                if nodoActual.esHijoIzquierdo():
-                    nodoActual.hijoDerecho.padre = nodoActual.padre
-                    nodoActual.padre.hijoIzquierdo = nodoActual.hijoDerecho
-                elif nodoActual.esHijoDerecho():
-                    nodoActual.hijoDerecho.padre = nodoActual.padre
-                    nodoActual.padre.hijoDerecho = nodoActual.hijoDerecho
-                else:
-                    nodoActual.reemplazarDatoDeNodo(nodoActual.hijoDerecho.clave, nodoActual.hijoDerecho.cargaUtil, nodoActual.hijoDerecho.hijoIzquierdo, nodoActual.hijoDerecho.hijoDerecho)
+            if nodoActual.tieneHijoIzquierdo(): #Verifica si el nodoActual tiene un hijo izquierdo.
+                if nodoActual.esHijoIzquierdo(): #Comprueba si nodoActual es el hijo izquierdo de su padre.
+                    nodoActual.hijoIzquierdo.padre = nodoActual.padre #Establece el padre del hijo izquierdo del nodoActual al padre del nodoActual.
+                    nodoActual.padre.hijoIzquierdo = nodoActual.hijoIzquierdo #Reemplaza el nodoActual por su hijo izquierdo en su padre.
+                elif nodoActual.esHijoDerecho(): #Si no es el hijo izquierdo, comprueba si es el hijo derecho.
+                    nodoActual.hijoIzquierdo.padre = nodoActual.padre #Establece el padre del hijo izquierdo del nodoActual al padre del nodoActual.
+                    nodoActual.padre.hijoDerecho = nodoActual.hijoIzquierdo #Reemplaza el nodoActual por su hijo izquierdo en su padre.
+                else: #Si nodoActual no es ni hijo izquierdo ni derecho (es decir, es la raíz).
+                    nodoActual.reemplazarDatoDeNodo(nodoActual.hijoIzquierdo.clave, nodoActual.hijoIzquierdo.cargaUtil, nodoActual.hijoIzquierdo.hijoIzquierdo, nodoActual.hijoIzquierdo.hijoDerecho) #Reemplaza los datos del nodoActual con los del hijo izquierdo.
+            else: #Si el nodoActual no tiene un hijo izquierdo (tiene solo un hijo derecho).
+                if nodoActual.esHijoIzquierdo(): #Comprueba si nodoActual es el hijo izquierdo de su padre.
+                    nodoActual.hijoDerecho.padre = nodoActual.padre#Establece el padre del hijo derecho del nodoActual al padre del nodoActual.
+                    nodoActual.padre.hijoIzquierdo = nodoActual.hijoDerecho#Reemplaza el nodoActual por su hijo derecho en su padre.
+                elif nodoActual.esHijoDerecho(): #Si no es el hijo izquierdo, comprueba si es el hijo derecho.
+                    nodoActual.hijoDerecho.padre = nodoActual.padre #Establece el padre del hijo derecho del nodoActual al padre del nodoActual.
+                    nodoActual.padre.hijoDerecho = nodoActual.hijoDerecho #Reemplaza el nodoActual por su hijo derecho en su padre.
+                else: # Si nodoActual no es ni hijo izquierdo ni derecho (es decir, es la raíz).
+                    nodoActual.reemplazarDatoDeNodo(nodoActual.hijoDerecho.clave, nodoActual.hijoDerecho.cargaUtil, nodoActual.hijoDerecho.hijoIzquierdo, nodoActual.hijoDerecho.hijoDerecho) # Reemplaza los datos del nodoActual con los del hijo derecho.
 
     def inorden(self):
         self._inorden(self.raiz)

@@ -1,13 +1,18 @@
 {% extends 'routes/base.html' %}
+{% load static %}
 
 {% block title %}{{ ciudad.name }}{% endblock %}
 
 {% block content %}
+{% if ciudad.estilo_css %}
+<link rel="stylesheet" href="{% static '/css/' %}{{ ciudad.estilo_css }}">
+{% endif %}
     <div class="container mt-5">
         <h1>{{ ciudad.name }}</h1>
         
         <h3>Su poblacion: {{ ciudad.poblacion }}</h3>
         <h3>Que visitar: {{ ciudad.visitar }}</h3>
+        <h3>Descripcion del lugar: {{ ciudad.descripcion }}</h3>
          <!-- Mostrar la imagen de la ciudad -->
         {% if ciudad.imagen %}
             <img src="{{ ciudad.imagen.url }}" alt="{{ ciudad.name }}" class="img-fluid" style="max-width: 100%; height: auto;">

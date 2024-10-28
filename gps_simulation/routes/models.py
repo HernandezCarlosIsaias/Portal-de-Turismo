@@ -7,6 +7,8 @@ class City(models.Model):
     visitar=models.CharField(max_length=100, null=True)
     eventos=models.CharField(max_length=100, null=True)
     imagen= models.ImageField(upload_to=("static/image"), null=True)
+    estilo_css= models.CharField(max_length=100, null=True, blank=True)
+
 
 
     def __str__(self):
