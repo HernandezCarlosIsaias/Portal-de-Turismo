@@ -3,8 +3,8 @@ from django.db import models
 class City(models.Model):
     name = models.CharField(max_length=100, null= False)
     poblacion= models.CharField(max_length=100, null=True)
-    descripcion= models.TextField(max_length=100, null=True)
-    visitar=models.CharField(max_length=100, null=True)
+    descripcion= models.TextField(max_length=5000, null=True)
+    visitar=models.TextField(max_length=5000, null=True)
     eventos=models.CharField(max_length=100, null=True)
     imagen= models.ImageField(upload_to=("static/image"), null=True)
     estilo_css= models.CharField(max_length=100, null=True, blank=True)
