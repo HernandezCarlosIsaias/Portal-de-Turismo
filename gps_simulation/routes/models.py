@@ -25,6 +25,12 @@ class Route(models.Model):
     start_city = models.ForeignKey(City, related_name='route_start', on_delete=models.CASCADE)
     end_city = models.ForeignKey(City, related_name='route_end', on_delete=models.CASCADE)
     distance = models.FloatField()
-
+   
     def __str__(self):
         return f"{self.start_city} -> {self.end_city} ({self.distance} km)"
+    
+class Lugar_Turistico(models.Model):
+    city = models.ForeignKey(City, related_name='city', on_delete=models.CASCADE)
+    img1 = models.ImageField(upload_to=("static/image"), null=True)
+    img2 = models.ImageField(upload_to=("static/image"), null=True)
+    img3 = models.ImageField(upload_to=("static/image"), null=True)
