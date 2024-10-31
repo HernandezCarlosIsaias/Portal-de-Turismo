@@ -10,10 +10,10 @@
     <div class="container mt-5">
         <h1>{{ ciudad.name }}</h1>
         
-        <h3>Su poblacion: {{ ciudad.poblacion }}</h3>
+    
         <h3>Que visitar:</h3>
         <p> {{ ciudad.visitar }}</p>
-        <h3>Descripcion del lugar: {{ ciudad.descripcion }}</h3>
+        <h3>Contactos: {{ ciudad.contacto }}</h3>
          <!-- Mostrar la imagen de la ciudad -->
         {% if ciudad.imagen %}
             <img src="{{ ciudad.imagen.url }}" alt="{{ ciudad.name }}" class="img-fluid" style="max-width: 100%; height: auto;">

@@ -2,10 +2,7 @@ from django.db import models
 
 class City(models.Model):
     name = models.CharField(max_length=100, null= False)
-    poblacion= models.CharField(max_length=100, null=True)
-    descripcion= models.TextField(max_length=5000, null=True)
-    visitar=models.TextField(max_length=5000, null=True)
-    eventos=models.CharField(max_length=100, null=True)
+    descripcion=models.TextField(max_length=5000, null=True)
     imagen= models.ImageField(upload_to=("static/image"), null=True)
     estilo_css= models.CharField(max_length=100, null=True, blank=True)
 
@@ -32,5 +29,8 @@ class Route(models.Model):
 class Lugar_Turistico(models.Model):
     city = models.ForeignKey(City, related_name='city', on_delete=models.CASCADE)
     img1 = models.ImageField(upload_to=("static/image"), null=True)
+    visitar1=models.TextField(max_length=3000, null=True)
     img2 = models.ImageField(upload_to=("static/image"), null=True)
+    visitar2=models.TextField(max_length=3000, null=True)
     img3 = models.ImageField(upload_to=("static/image"), null=True)
+    visitar3=models.TextField(max_length=3000, null=True)
