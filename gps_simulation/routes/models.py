@@ -28,9 +28,12 @@ class Route(models.Model):
     
 class Lugar_Turistico(models.Model):
     city = models.ForeignKey(City, related_name='city', on_delete=models.CASCADE)
+    title1 = models.TextField(max_length=50, null=True)
     img1 = models.ImageField(upload_to=("static/image"), null=True)
     visitar1=models.TextField(max_length=3000, null=True)
+    title2 = models.TextField(max_length=50, null=True)
     img2 = models.ImageField(upload_to=("static/image"), null=True)
     visitar2=models.TextField(max_length=3000, null=True)
+    title3 = models.TextField(max_length=50, null=True)
     img3 = models.ImageField(upload_to=("static/image"), null=True)
     visitar3=models.TextField(max_length=3000, null=True)
