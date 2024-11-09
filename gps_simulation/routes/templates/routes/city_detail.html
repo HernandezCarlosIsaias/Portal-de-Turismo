@@ -10,16 +10,51 @@
     <div class="container mt-5">
         <h1>{{ ciudad.name }}</h1>
         
-    
-        <h3>Que visitar:</h3>
-        <p> {{ ciudad.visitar }}</p>
-        <h3>Contactos: {{ ciudad.contacto }}</h3>
-         <!-- Mostrar la imagen de la ciudad -->
+        <p id="city-description"> {{ ciudad.descripcion }} </p>
+        
+        <!-- Mostrar la imagen de la ciudad -->
         {% if ciudad.imagen %}
-            <img src="{{ ciudad.imagen.url }}" alt="{{ ciudad.name }}" class="img-fluid" style="max-width: 100%; height: auto;">
+            <img src="{{ ciudad.imagen.url }}" alt="{{ ciudad.name }}" id="img-city">
         {% else %}
             <p>No hay imagen disponible para esta ciudad.</p>
         {% endif %}
+
+        <h3 id="visite">Que lugares turísticos visitar:</h3>
+        
+        <!-- Mostrar lugares turísticos -->
+        <div class="contenedor">
+            {% for lugar in lugares_turisticos %}
+                <div class="item">
+                    {% if lugar.img1 %}
+                        <img src="{{ lugar.img1.url }}" alt="{{ lugar.city }}" class="imagen">
+                    {% endif %}
+                    <div class="texto">
+                        <h4>{{ lugar.title1 }}</h4>
+                        <p>{{ lugar.visitar1 }}</p>
+                    </div>
+                </div>
+                <div class="item">
+                    {% if lugar.img2 %}
+                        <img src="{{ lugar.img2.url }}" alt="{{ lugar.city }}" class="imagen">
+                    {% endif %}
+                    <div class="texto">
+                        <h4>{{ lugar.title2 }}</h4>
+                        <p>{{ lugar.visitar2 }}</p>
+                    </div>
+                </div>
+                <div class="item">
+                    {% if lugar.img3 %}
+                        <img src="{{ lugar.img3.url }}" alt="{{ lugar.city }}" class="imagen">
+                    {% endif %}
+                    <div class="texto">
+                        <h4>{{ lugar.title3 }}</h4>
+                        <p>{{ lugar.visitar3 }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    
+        <p> {{ ciudad.visitar }}</p>
 
         <h3>Rutas desde {{ ciudad.name }}:</h3>
         <ul class="list-group mb-3">
