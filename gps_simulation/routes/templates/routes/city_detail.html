@@ -1,6 +1,12 @@
 {% extends 'routes/base.html' %}
 {% load static %}
 
+
+{% block archivos_css %}
+<link rel= "stylesheet" href="{% static 'css/style.css'%}">
+{% endblock archivos_css %}
+
+
 {% block title %}{{ ciudad.name }}{% endblock %}
 
 {% block content %}
@@ -8,15 +14,15 @@
 <link rel="stylesheet" href="{% static '/css/' %}{{ ciudad.estilo_css }}">
 {% endif %}
     <div class="container mt-5">
-        <h1>{{ ciudad.name }}</h1>
+        <h1 class="tituloCiudad">{{ ciudad.name }}</h1>
         
         <p id="city-description"> {{ ciudad.descripcion }} </p>
         
         <!-- Mostrar la imagen de la ciudad -->
         {% if ciudad.imagen %}
-            <img src="{{ ciudad.imagen.url }}" alt="{{ ciudad.name }}" id="img-city">
+                <img src="{{ ciudad.imagen.url }}" alt="{{ ciudad.name }}" id="img-city">
         {% else %}
-            <p>No hay imagen disponible para esta ciudad.</p>
+            <p id="city-description">No hay imagen disponible para esta ciudad.</p>
         {% endif %}
 
         <h3 id="visite">Que lugares turísticos visitar:</h3>
@@ -29,8 +35,8 @@
                         <img src="{{ lugar.img1.url }}" alt="{{ lugar.city }}" class="imagen">
                     {% endif %}
                     <div class="texto">
-                        <h4>{{ lugar.title1 }}</h4>
-                        <p>{{ lugar.visitar1 }}</p>
+                        <h4 class="tituloLugar">{{ lugar.title1 }}</h4>
+                        <p id="city-description">{{ lugar.visitar1 }}</p>
                     </div>
                 </div>
                 <div class="item">
@@ -38,8 +44,8 @@
                         <img src="{{ lugar.img2.url }}" alt="{{ lugar.city }}" class="imagen">
                     {% endif %}
                     <div class="texto">
-                        <h4>{{ lugar.title2 }}</h4>
-                        <p>{{ lugar.visitar2 }}</p>
+                        <h4 class="tituloLugar">{{ lugar.title2 }}</h4>
+                        <p id="city-description">{{ lugar.visitar2 }}</p>
                     </div>
                 </div>
                 <div class="item">
@@ -47,16 +53,16 @@
                         <img src="{{ lugar.img3.url }}" alt="{{ lugar.city }}" class="imagen">
                     {% endif %}
                     <div class="texto">
-                        <h4>{{ lugar.title3 }}</h4>
-                        <p>{{ lugar.visitar3 }}</p>
+                        <h4 class="tituloLugar">{{ lugar.title3 }}</h4>
+                        <p id="city-description">{{ lugar.visitar3 }}</p>
                     </div>
                 </div>
             {% endfor %}
         </div>
     
-        <p> {{ ciudad.visitar }}</p>
+        <p id="city-description"> {{ ciudad.visitar }}</p>
 
-        <h3>Rutas desde {{ ciudad.name }}:</h3>
+        <h3 id="visite">Rutas desde {{ ciudad.name }}:</h3>
         <ul class="list-group mb-3">
             {% for ruta in rutas_salida %}
                 <li class="list-group-item">
@@ -67,7 +73,7 @@
             {% endfor %}
         </ul>
 
-        <h3>Rutas hacia {{ ciudad.name }}:</h3>
+        <h3 id="visite">Rutas hacia {{ ciudad.name }}:</h3>
         <ul class="list-group mb-3">
             {% for ruta in rutas_llegada %}
                 <li class="list-group-item">
