@@ -9,7 +9,22 @@
 {% block title %}Lista de Ciudades{% endblock %}
 
 {% block content %}
-    <h1>Ciudades</h1>
+
+    <div class="contenedorHome">
+        <div class="izquierda">
+            <img src="/static/img/logo.png" alt="">
+        </div>
+        <div class="derecha">
+            <div class="contenido">
+                <h2>¡BIENVENIDOS A PORTAL CORDOBA!</h2>
+                <p>Estamos encantados de que nos hayan encontrado y queremos invitarlos a explorar todo lo que nuestra página tiene para ofrecer.
+                     Aquí, cada rincón de Córdoba cobra vida con información detallada sobre los mejores lugares para visitar y experiencias únicas que harán de su viaje algo 
+                     inolvidable.</p>
+            </div>
+        </div>
+    </div>
+
+    <h1 class="titulo">Ciudades de Cordoba</h1>
     
     <ul class="list-group">
         {% for ciudad in ciudades %}

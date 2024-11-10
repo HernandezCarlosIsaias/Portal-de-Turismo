@@ -1,4 +1,10 @@
 {% extends 'routes/base.html' %}
+{% load static %}
+
+{% block archivos_css %}
+<link rel= "stylesheet" href="{% static 'css/style.css'%}">
+{% endblock archivos_css %}
+
 {% block title %}Cargar Rutas{% endblock %}
 
 {% block content %}
