@@ -1,9 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Plataforma de Turismo{% endblock %}</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/logo.png'%}">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     {% block archivos_css %}{% endblock %}
@@ -66,10 +68,10 @@
                   <h3>Seguinos en nuestras Redes</h3>
                   <ul>
                       <li class="red">
-                          <a href="#" target="_blank"><img src="static/img/icono_face.png" class="footer-imagen" alt=""></a>
+                          <a href="#" target="_blank"><img src="{% static 'img/icono_face.png' %} " class="footer-imagen" alt=""></a>
                       </li>
                       <li class="red">
-                          <a href="#" target="_blank"><img src="static/img/icono_insta.png" class="footer-imagen" alt=""></a>
+                          <a href="#" target="_blank"><img src="{% static 'img/icono_insta.png' %} " class="footer-imagen" alt=""></a>
                       </li>
                   </ul>
               </div>

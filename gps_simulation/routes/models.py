@@ -4,7 +4,6 @@ class City(models.Model):
     name = models.CharField(max_length=100, null= False)
     descripcion=models.TextField(max_length=5000, null=True)
     imagen= models.ImageField(upload_to=("static/image"), null=True)
-    estilo_css= models.CharField(max_length=100, null=True, blank=True)
 
 
 
