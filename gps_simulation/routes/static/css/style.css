@@ -18,7 +18,7 @@ body {
 .contenedorHome {
     display: flex;
     height: calc(100vh - 60px); 
-    background-image: url('/static/img/fondo.jpg');
+    background-image: url('../image/fondo.jpg');
     background-size: cover;
     background-position: center;
 
@@ -122,4 +122,3 @@ body {
 .alert {
     margin-bottom: 4%;
 }
-
