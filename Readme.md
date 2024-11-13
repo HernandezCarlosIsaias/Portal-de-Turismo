@@ -16,7 +16,7 @@ Sobre la base que nos dio el proyecto, nosotros implementamos:
 - Se comento la clase de "ArbolBinarioBusqueda"
 
 ## Analisis de Complejidad de algoritmos de Dijkstra:
-El análisis de complejidad del algoritmo de Dijkstra es de O((V+E)logV), donde "V" es el número de vértices y E el numero de aristas ya que tenemos una cola de prioridad.
+El análisis de complejidad del algoritmo de Dijkstra es de O(V logV), donde "V" es el número de vértices ya que tenemos una cola de prioridad.
 
 ## ¿Que anda? 
 Funciona todo lo requerido en la consigna del trabajo.

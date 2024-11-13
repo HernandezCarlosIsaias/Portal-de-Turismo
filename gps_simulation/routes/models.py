@@ -1,16 +1,15 @@
 from django.db import models
 
-#
+# Modelo dela Clase City
 class City(models.Model):
     name = models.CharField(max_length=100, null= False)
     descripcion=models.TextField(max_length=5000, null=True)
     imagen= models.ImageField(upload_to=("static/image"), null=True)
 
-
-
     def __str__(self):
         return self.name
     
+    # Metodo para obtener el vecino
     def obtener_vecinos(self):
         # Busca las rutas donde esta ciudad es la ciudad de inicio
         rutas_salientes = Route.objects.filter(start_city=self)
@@ -18,6 +17,7 @@ class City(models.Model):
         vecinos = [(ruta.end_city, ruta.distance) for ruta in rutas_salientes]
         return vecinos
 
+# Modelo de la clase Route
 class Route(models.Model):
     start_city = models.ForeignKey(City, related_name='route_start', on_delete=models.CASCADE)
     end_city = models.ForeignKey(City, related_name='route_end', on_delete=models.CASCADE)
@@ -26,6 +26,7 @@ class Route(models.Model):
     def __str__(self):
         return f"{self.start_city} -> {self.end_city} ({self.distance} km)"
     
+# Modelo de la clase de Lugar Turistico
 class Lugar_Turistico(models.Model):
     city = models.ForeignKey(City, related_name='city', on_delete=models.CASCADE)
     title1 = models.TextField(max_length=50, null=True)

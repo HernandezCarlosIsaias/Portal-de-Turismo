@@ -1,21 +1,25 @@
 import heapq #libreria para implementar la cola de prioridad
 from .models import City, Route
 
-
+# Funcion de Dijkstra
 def dijkstra(ciudad_inicio):
     distancias = {ciudad_inicio: 0}
     ciudades_previas = {ciudad_inicio: None}
     cola_prioridad = [(0, ciudad_inicio)]
 
+    # Saca y almacena la destancia actual y la ciudad
     while cola_prioridad:
         distancia_actual, ciudad_actual = heapq.heappop(cola_prioridad)
 
+        # Compara que pa distancia actual no sea menor a la distancia de la ciudad en donde estoy parado
         if distancia_actual > distancias[ciudad_actual]:
             continue
 
+        # Recorre y agrega los vecinos a la cola de prioridad
         for vecino, peso in ciudad_actual.obtener_vecinos():
             distancia = distancia_actual + peso
 
+            # Compara las distancia acumulada con la que tiene el vecino, y si se cumple pisa con la distancia actual + peso
             if distancia < distancias.get(vecino, float('inf')):
                 distancias[vecino] = distancia
                 ciudades_previas[vecino] = ciudad_actual
